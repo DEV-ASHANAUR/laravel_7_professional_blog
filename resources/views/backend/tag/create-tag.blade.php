@@ -3,33 +3,33 @@
 
 <main>
     <div class="container-fluid">
-        <h3 class="mt-4">Category</h3>
+        <h3 class="mt-4">Tag</h3>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Edit Category</li>
+            <li class="breadcrumb-item active">Create Tag</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span><i class="fas fa-edit mr-1"></i>Edit Category</span>
-                <small class="d-sm-block"><a href="{{ route('category.view') }}" class="btn btn-success btn-sm"><i class="fas fa-list mr-1"></i>Category List</a></small>
+                <span><i class="fas fa-plus-circle mr-1"></i>Create Tag</span>
+                <small class="d-sm-block"><a href="{{ route('tag.view') }}" class="btn btn-success btn-sm"><i class="fas fa-list mr-1"></i>Tag List</a></small>
             </div>
             <div class="card-body">
                 @include('includes.error')
-                <form action="{{ route('category.update',$editData->id) }}" method="post" id="Myform">
+                <form action="{{ route('tag.store') }}" method="post" id="Myform">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="name">Category Name</label>
-                            <input type="text" class="form-control" value="{{ $editData->name }}" name="name">
+                            <label for="name">Tag Name</label>
+                            <input type="text" class="form-control" name="name">
                         </div>
                     </div>   
                     <div class="form-row"> 
                         <div class="form-group col-md-6">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" placeholder="Enter Some Description">{{ $editData->description }}</textarea>
+                            <textarea class="form-control" name="description" placeholder="Enter Some Description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

@@ -36,4 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'CategoryController@destroy')->name('category.destroy');
 
     });
+    Route::group(['prefix' => 'tag'], function () {
+        Route::get('/view', 'TagController@index')->name('tag.view');
+        Route::get('/create', 'TagController@create')->name('tag.create');
+        Route::post('/store', 'TagController@store')->name('tag.store');
+        Route::get('/edit/{id}', 'TagController@edit')->name('tag.edit');
+        Route::post('/update/{id}', 'TagController@update')->name('tag.update');
+        Route::get('/delete/{id}', 'TagController@destroy')->name('tag.destroy');
+
+    });
 });

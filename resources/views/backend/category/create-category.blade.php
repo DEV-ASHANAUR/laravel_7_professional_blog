@@ -44,9 +44,6 @@
         rules: {
           name: {
             required: true,
-          },
-          description: {
-            required: true
           }
           
         },
