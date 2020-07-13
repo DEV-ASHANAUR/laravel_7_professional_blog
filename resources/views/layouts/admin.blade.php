@@ -1,3 +1,7 @@
+@php
+    $prefix = Request::route()->getPrefix();
+    $route = Route::current()->getName();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,8 +12,11 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="{{ asset('admin') }}/css/styles.css" rel="stylesheet" />
+        <link href="{{ asset('admin') }}/css/toastr.css" rel="stylesheet">
         <link href="{{ asset('admin') }}/css/datatable.min.css" rel="stylesheet"/>
         <script src="{{ asset('admin') }}/js/fontawesome.min.js"></script>
+        <script src="{{ asset('admin') }}/js/jquery.js"></script>
+        <script src="{{ asset('admin') }}/js/sweetalert.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -23,6 +30,7 @@
                     </div>
                 </div>
             </form>
+            <span class="text-white">{{ Auth::user()->name }}</span>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
@@ -30,7 +38,11 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
                     </div>
                 </li>
             </ul>
@@ -41,50 +53,23 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html"
+                            <a class="nav-link" href="{{ route('dashboard') }}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</a
                             >
                             <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+                            {{-- manage suppliers start --}}
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
+                                Manage Category
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="layout-static.html">Static Navigation</a><a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a></nav>
+                            <div class="collapse {{ ($prefix == '/category')?'show':'' }}" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'category.view')?'active':'' }}" href="{{ route('category.view') }}">View Category</a>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                            ></a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
-                                        >Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
-                                        >Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts</a
-                            ><a class="nav-link" href="tables.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables</a
-                            >
+                            {{-- manage Suppliers end --}}
+                            
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -111,7 +96,7 @@
                 </footer>
             </div>
         </div>
-        <script src="{{ asset('admin') }}/js/jquery.js"></script>
+        
         <script src="{{ asset('admin') }}/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('admin') }}/js/scripts.js"></script>
         <script src="{{ asset('admin') }}/js/Chart.min.js"></script>
@@ -120,5 +105,56 @@
         <script src="{{ asset('admin') }}/js/dataTables.min.js"></script>
         <script src="{{ asset('admin') }}/js/bootstrap4.min.js"></script>
         <script src="{{ asset('admin') }}/assets/demo/datatables-demo.js"></script>
+
+        <script src="{{ asset('admin') }}/js/toastr.min.js"></script>
+        <script src="{{ asset('admin') }}/js/jquery.validate.min.js"></script>
+        <script src="{{ asset('admin') }}/js/additional-methods.min.js"></script>
+        <script src="{{ asset('admin') }}/js/preview.js"></script>
+        <script>
+            @if(Session::has('message'))
+              var type="{{Session::get('alert-type','info')}}"
+              switch(type){
+                case 'info':
+                      toastr.info("{{ Session::get('message') }}");
+                      break;
+                case 'success':
+                      toastr.success("{{ Session::get('message') }}");
+                      break;
+                case 'warning':
+                      toastr.warning("{{ Session::get('message') }}");
+                      break;
+                case 'error':
+                      toastr.error("{{ Session::get('message') }}");
+                      break;
+              }
+            @endif  
+        </script>
+        //delete sweetalert
+        <script>
+            $(document).ready(function(){
+              $(document).on('click','#delete',function(e){
+                  e.preventDefault();
+                  var link = $(this).attr('href');
+                  Swal.fire({
+                      title: 'Are you sure?',
+                      text: "You won't be able to revert this!",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, delete it!'
+                      }).then((result) => {
+                      if (result.value) {
+                          window.location.href = link;
+                          Swal.fire(
+                          'Deleted!',
+                          'Your file has been deleted.',
+                          'success'
+                          )
+                      }
+                   });
+              });
+            });
+        </script>
     </body>
 </html>
