@@ -59,12 +59,12 @@
                             >
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             {{-- manage category start --}}
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts"
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Manage Category
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
-                            <div class="collapse {{ ($prefix == '/category')?'show':'' }}" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <div class="collapse {{ ($prefix == '/category')?'show':'' }}" id="collapseLayouts1" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'category.view')?'active':'' }}" href="{{ route('category.view') }}">View Category</a>
                             </div>
                             {{-- manage category end --}}
@@ -76,6 +76,16 @@
                             ></a>
                             <div class="collapse {{ ($prefix == '/tag')?'show':'' }}" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'tag.view')?'active':'' }}" href="{{ route('tag.view') }}">View Tag</a>
+                            </div>
+                            {{-- manage tag end --}}
+                            {{-- manage tag start --}}
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Manage Post
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse {{ ($prefix == '/post')?'show':'' }}" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'post.view')?'active':'' }}" href="{{ route('post.view') }}">View Post</a>
                             </div>
                             {{-- manage tag end --}}
                             

@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $alldata = Tag::all();
+        $alldata = Tag::orderBy('created_at', 'DESC')->get();
         return view('backend.tag.view-tag',compact('alldata'));
     }
 
@@ -92,9 +92,9 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:tags|max:25',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|unique:tags|max:25',
+        // ]);
         $tag = Tag::find($id);
         $tag->name = $request->name;
         $tag->slug = Str::slug($request->name, '-');

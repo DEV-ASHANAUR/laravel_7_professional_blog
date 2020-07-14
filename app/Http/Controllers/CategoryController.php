@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $alldata = Category::all();
+        $alldata = Category::orderBy('created_at', 'DESC')->get();
         return view('backend.category.view-category',compact('alldata')); 
     }
 
@@ -92,9 +92,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:categories|max:25',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|unique:categories|max:25',
+        // ]);
         $category = Category::find($id);
         $category->name = $request->name;
         $category->slug = Str::slug($request->name, '-');
