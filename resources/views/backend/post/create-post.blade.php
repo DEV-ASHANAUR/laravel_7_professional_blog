@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-8">
-                          <label for="title">Post Category</label>
+                          <label>Post Category</label>
                           <select name="category" class="form-control" id="category">
                             <option value="">Select Category</option>
                             @foreach ($catagory as $key => $cat)
@@ -47,19 +47,19 @@
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-8">
-                          <label for="title">Post Tags</label>
+                        <label>Post Tag</label><br>
                           @foreach ($tag as $tags)
-                          <div class="custom-control custom-checkbox" style="margin-right: 20px">
-                              <input class="custom-control-input" name="tags[]" type="checkbox" id="tag{{ $tags->id }}" value="{{ $tags->id }}">
-                              <label for="tag{{ $tags->id }}" class="custom-control-label">{{ $tags->name }}</label>
-                          </div>
-                        @endforeach
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="tags[]" type="checkbox" id="tag{{ $tags->id }}" value="{{ $tags->id }}">
+                              <label class="form-check-label" for="tag{{ $tags->id }}">{{ $tags->name }}</label>
+                            </div>
+                          @endforeach
                       </div>
                     </div>       
                     <div class="form-row"> 
                         <div class="form-group col-md-8">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" placeholder="Enter Some Description"></textarea>
+                            <textarea class="form-control" name="description" placeholder="Enter Some Description" id="description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -127,3 +127,16 @@
     </script>
 
 @endsection 
+@section('style')
+  <link href="{{ asset('admin') }}/summernote-bs4.css" rel="stylesheet"/>
+@endsection
+@section('script')
+  <script src="{{ asset('admin') }}/summernote-bs4.js"></script>
+  <script>
+    $('#description').summernote({
+        placeholder: 'Write Post Description Here..',
+        tabsize: 2,
+        height: 300
+      });
+  </script>
+@endsection

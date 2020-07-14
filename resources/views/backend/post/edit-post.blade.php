@@ -10,7 +10,7 @@
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <span><i class="fas fa-plus-circle mr-1"></i>Edit Post</span>
-                <small class="d-sm-block"><a href="{{ route('post.view') }}" class="btn btn-success btn-sm"><i class="fas fa-list mr-1"></i>Edit List</a></small>
+                <small class="d-sm-block"><a href="{{ route('post.view') }}" class="btn btn-success btn-sm"><i class="fas fa-list mr-1"></i>Post List</a></small>
             </div>
             <div class="card-body">
                 @include('includes.error')
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-8">
-                          <label for="title">Post Category</label>
+                          <label>Post Category</label>
                           <select name="category" class="form-control" id="category">
                             <option value="">Select Category</option>
                             @foreach ($catagory as $key => $cat)
@@ -47,15 +47,15 @@
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-8">
-                          <label for="title">Post Tags</label>
+                          <label>Post Tags</label><br>
                           @foreach ($tag as $tags)
-                          <div class="custom-control custom-checkbox" style="margin-right: 20px">
-                              <input class="custom-control-input" name="tags[]" type="checkbox" id="tag{{ $tags->id }}" value="{{ $tags->id }}" @foreach ($edit_data->tags as $t)
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" name="tags[]" type="checkbox" id="tag{{ $tags->id }}" value="{{ $tags->id }}" @foreach ($edit_data->tags as $t)
                                   @if ($t->id == $tags->id)
                                     checked
                                   @endif
                               @endforeach>
-                              <label for="tag{{ $tags->id }}" class="custom-control-label">{{ $tags->name }}</label>
+                              <label for="tag{{ $tags->id }}" class="form-check-label">{{ $tags->name }}</label>
                           </div>
                         @endforeach
                       </div>
@@ -63,11 +63,11 @@
                     <div class="form-row"> 
                         <div class="form-group col-md-8">
                             <label for="description">Description</label>
-                            <textarea class="form-control" name="description" placeholder="Enter Some Description">{{ $edit_data->description }}</textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="Enter Some Description">{{ $edit_data->description }}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
@@ -128,3 +128,16 @@
     </script>
 
 @endsection 
+@section('style')
+  <link href="{{ asset('admin') }}/summernote-bs4.css" rel="stylesheet"/>
+@endsection
+@section('script')
+  <script src="{{ asset('admin') }}/summernote-bs4.js"></script>
+  <script>
+    $('#description').summernote({
+        placeholder: 'Write Post Description Here..',
+        tabsize: 2,
+        height: 300
+      });
+  </script>
+@endsection

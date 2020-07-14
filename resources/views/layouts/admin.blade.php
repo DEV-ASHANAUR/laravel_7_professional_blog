@@ -15,6 +15,7 @@
         <link href="{{ asset('admin') }}/css/toastr.css" rel="stylesheet">
         <link href="{{ asset('admin') }}/css/datatable.min.css" rel="stylesheet"/>
         <script src="{{ asset('admin') }}/js/fontawesome.min.js"></script>
+        @yield('style')
         <script src="{{ asset('admin') }}/js/jquery.js"></script>
         <script src="{{ asset('admin') }}/js/sweetalert.js"></script>
     </head>
@@ -129,6 +130,7 @@
         <script src="{{ asset('admin') }}/js/jquery.validate.min.js"></script>
         <script src="{{ asset('admin') }}/js/additional-methods.min.js"></script>
         <script src="{{ asset('admin') }}/js/preview.js"></script>
+        @yield('script')
         <script>
             @if(Session::has('message'))
               var type="{{Session::get('alert-type','info')}}"
