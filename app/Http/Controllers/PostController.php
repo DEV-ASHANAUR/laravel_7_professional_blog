@@ -17,7 +17,6 @@ class PostController extends Controller
      */
     public function index()
     {
-
         $alldata = Post::orderBy('created_at', 'DESC')->get();
         return view('backend.post.view-post',compact('alldata'));
     }

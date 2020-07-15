@@ -5,13 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home','HomeController@index')->name('home');
 
-Route::get('/','FrontEndController@home')->name('home');
-Route::get('/about','FrontEndController@about')->name('about');
-Route::get('/post','FrontEndController@post')->name('post');
-Route::get('/category','FrontEndController@category')->name('category');
-Route::get('/contact','FrontEndController@contact')->name('contact');
+
 // Route::get('/', function () {
 //     return view('website.home');
 // })->name('home.view');
@@ -47,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'TagController@destroy')->name('tag.destroy');
     });
     Route::group(['prefix' => 'post'], function () {
-        Route::get('/view', 'PostController@index')->name('post.view');
+        Route::get('/post_view', 'PostController@index')->name('post.view');
         Route::get('/create', 'PostController@create')->name('post.create');
         Route::post('/store', 'PostController@store')->name('post.store');
         Route::get('/edit/{id}', 'PostController@edit')->name('post.edit');
@@ -56,3 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/delete/{id}', 'PostController@destroy')->name('post.destroy');
     });
 });
+
+Route::get('/','FrontEndController@home')->name('website.home');
+Route::get('/about','FrontEndController@about')->name('website.about');
+Route::get('/post/{slug}','FrontEndController@singlepost')->name('website.post');
+Route::get('/category','FrontEndController@category')->name('website.category');
+Route::get('/contact','FrontEndController@contact')->name('website.contact');
