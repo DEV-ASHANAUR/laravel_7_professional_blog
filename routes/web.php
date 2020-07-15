@@ -9,7 +9,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
     return view('website.home');
-});
+})->name('home.view');
 Route::get('/about', function () {
     return view('website.about');
 });
