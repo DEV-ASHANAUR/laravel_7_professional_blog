@@ -7,22 +7,25 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return view('website.home');
-})->name('home.view');
-Route::get('/about', function () {
-    return view('website.about');
-});
-Route::get('/category', function () {
-    return view('website.category');
-});
-Route::get('/post', function () {
-    return view('website.post');
-});
+Route::get('/','FrontEndController@home')->name('home');
+Route::get('/about','FrontEndController@about')->name('about');
+Route::get('/post','FrontEndController@post')->name('post');
+Route::get('/category','FrontEndController@category')->name('category');
+Route::get('/contact','FrontEndController@contact')->name('contact');
+// Route::get('/', function () {
+//     return view('website.home');
+// })->name('home.view');
+// Route::get('/about', 'FrontEndController@about')->name('about');
+// Route::get('/category', function () {
+//     return view('website.category');
+// });
+// Route::get('/post', function () {
+//     return view('website.post');
+// });
 
-Route::get('/contact', function () {
-    return view('website.contact');
-});
+// Route::get('/contact', function () {
+//     return view('website.contact');
+// });
 
 //admin panel
 Route::group(['middleware' => 'auth'], function () {
