@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-4">
           @foreach ($middlepost as $post)
-          <a href="single.html" class="h-entry img-5 h-100 gradient" style="background-image: url('{{ 'upload/posts_photo/'.$post->image }}');">
+          <a href="{{ route('website.post',['slug'=>$post->slug]) }}" class="h-entry img-5 h-100 gradient" style="background-image: url('{{ 'upload/posts_photo/'.$post->image }}');">
             
             <div class="text">
               <div class="post-categories mb-3">
