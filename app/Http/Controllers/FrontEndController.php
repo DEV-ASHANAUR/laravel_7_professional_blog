@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
+use App\Tag;
 class FrontEndController extends Controller
 {
     public function home()
@@ -28,7 +30,10 @@ class FrontEndController extends Controller
     public function singlepost($slug)
     {
         $post = Post::with('category','user')->where('slug',$slug)->first();
-        return view('website.post',compact('post'));       
+        $popular = Post::with('category', 'user')->inRandomOrder()->limit(3)->get();
+        $category = Category::all();
+        $tagdata = Tag::orderBy('created_at', 'DESC')->get();
+        return view('website.post',compact(['post','popular','category','tagdata']));       
     }
     public function category()
     {

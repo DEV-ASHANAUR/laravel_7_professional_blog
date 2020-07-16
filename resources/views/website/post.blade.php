@@ -2,8 +2,8 @@
 @extends('layouts.website')
 @section('content')
 
-    <div class="site-cover site-cover-sm same-height overlay single-page"
-    style="background-image: url('{{ 'upload/posts_photo/'.$post->image }}');">
+    <div class="site-cover site-cover-sm same-height overlay single-page" 
+    style="background-image: url('{{ asset('upload/posts_photo/'.$post->image) }}');">
         <div class="container">
             <div class="row same-height justify-content-center">
                 <div class="col-md-12 col-lg-10">
@@ -12,7 +12,7 @@
                         <h1 class="mb-4"><a href="javascript:void()">{{ $post->title }}</a></h1>
                         <div class="post-meta align-items-center text-center">
                             <figure class="author-figure mb-0 mr-3 d-inline-block"><img
-                                    src="{{ asset('website') }}/images/person_1.jpg" alt="Image" class="img-fluid">
+                                    src="{{ url('upload/users_images/'.$post->user->image) }}" alt="Image" class="img-fluid">
                             </figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d,Y') }}</span>
@@ -200,13 +200,11 @@
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
                         <div class="bio text-center">
-                            <img src="{{ asset('website') }}/images/person_2.jpg" alt="Image Placeholder"
+                            <img src="{{ url('upload/users_images/'.$post->user->image) }}" alt="Image Placeholder"
                                 class="img-fluid mb-5">
                             <div class="bio-body">
-                                <h2>Craig David</h2>
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Exercitationem facilis sunt repellendus excepturi beatae porro debitis
-                                    voluptate nulla quo veniam fuga sit molestias minus.</p>
+                                <h2>{{ $post->user->name }}</h2>
+                                <p class="mb-4">{{ $post->user->description }}</p>
                                 <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a></p>
                                 <p class="social">
                                     <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
@@ -222,19 +220,21 @@
                         <h3 class="heading">Popular Posts</h3>
                         <div class="post-entry-sidebar">
                             <ul>
+                                @foreach ($popular as $post)
                                 <li>
-                                    <a href="">
-                                        <img src="{{ asset('website') }}/images/img_1.jpg" alt="Image placeholder"
+                                    <a href="{{ route('website.post',['slug'=>$post->slug]) }}">
+                                        <img src="{{ url('upload/posts_photo/'.$post->image) }}" alt="Image placeholder"
                                             class="mr-4">
                                         <div class="text">
-                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                            <h4>{{ $post->title }}</h4>
                                             <div class="post-meta">
-                                                <span class="mr-2">March 15, 2018 </span>
+                                                <span class="mr-2">{{ $post->created_at->format('M d Y') }} </span>
                                             </div>
                                         </div>
                                     </a>
                                 </li>
-                                <li>
+                                @endforeach
+                                {{-- <li>
                                     <a href="">
                                         <img src="{{ asset('website') }}/images/img_2.jpg" alt="Image placeholder"
                                             class="mr-4">
@@ -257,7 +257,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -266,11 +266,14 @@
                     <div class="sidebar-box">
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
-                            <li><a href="#">Food <span>(12)</span></a></li>
+                            @foreach ($category as $cat)
+                                <li><a href="#">{{ $cat->name }} <span>(12)</span></a></li>
+                            @endforeach
+{{--                             
                             <li><a href="#">Travel <span>(22)</span></a></li>
                             <li><a href="#">Lifestyle <span>(37)</span></a></li>
                             <li><a href="#">Business <span>(42)</span></a></li>
-                            <li><a href="#">Adventure <span>(14)</span></a></li>
+                            <li><a href="#">Adventure <span>(14)</span></a></li> --}}
                         </ul>
                     </div>
                     <!-- END sidebar-box -->
@@ -278,8 +281,11 @@
                     <div class="sidebar-box">
                         <h3 class="heading">Tags</h3>
                         <ul class="tags">
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Adventure</a></li>
+                            @foreach ($tagdata as $tag)
+                               <li><a href="#">{{ $tag->name }}</a></li>
+                            @endforeach
+                            
+                            {{-- <li><a href="#">Adventure</a></li>
                             <li><a href="#">Food</a></li>
                             <li><a href="#">Lifestyle</a></li>
                             <li><a href="#">Business</a></li>
@@ -289,7 +295,7 @@
                             <li><a href="#">Food</a></li>
                             <li><a href="#">Lifestyle</a></li>
                             <li><a href="#">Business</a></li>
-                            <li><a href="#">Freelancing</a></li>
+                            <li><a href="#">Freelancing</a></li> --}}
                         </ul>
                     </div>
                 </div>
