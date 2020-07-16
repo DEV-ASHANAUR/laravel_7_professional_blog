@@ -42,6 +42,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'TagController@update')->name('tag.update');
         Route::get('/delete/{id}', 'TagController@destroy')->name('tag.destroy');
     });
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/view', 'UserController@view_user')->name('user.view');
+        Route::get('/create', 'UserController@create')->name('user.create');
+        Route::post('/store', 'UserController@store')->name('user.store');
+        Route::get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        Route::post('/update/{id}', 'UserController@update')->name('user.update');
+        Route::get('/delete/{id}', 'UserController@destroy')->name('user.destroy');
+        Route::get('/pass/view', 'UserController@passview')->name('profile.pass.view');
+        Route::post('/pass/change', 'UserController@passchange')->name('profile.pass.change');
+        Route::get('/profile/view', 'UserController@view_profile')->name('profile.view');
+        Route::get('/profile/edit', 'UserController@edit_profile')->name('profile.edit');
+        Route::post('/profile/update', 'UserController@update_profile')->name('profile.update');
+    });
     Route::group(['prefix' => 'post'], function () {
         Route::get('/post_view', 'PostController@index')->name('post.view');
         Route::get('/create', 'PostController@create')->name('post.create');

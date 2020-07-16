@@ -14,6 +14,7 @@
         <link href="{{ asset('admin') }}/css/styles.css" rel="stylesheet" />
         <link href="{{ asset('admin') }}/css/toastr.css" rel="stylesheet">
         <link href="{{ asset('admin') }}/css/datatable.min.css" rel="stylesheet"/>
+        @yield('pstyle')
         <script src="{{ asset('admin') }}/js/fontawesome.min.js"></script>
         @yield('style')
         <script src="{{ asset('admin') }}/js/jquery.js"></script>
@@ -37,7 +38,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                        <a class="dropdown-item" href="{{ route('profile.pass.view') }}">Settings</a><a class="dropdown-item" href="{{ route('profile.view') }}">Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
@@ -58,6 +59,16 @@
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</a
                             >
+                            {{-- manage category start --}}
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Manage User
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse {{ ($prefix == '/user')?'show':'' }}" id="collapseLayouts4" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'user.view')?'active':'' }}" href="{{ route('user.view') }}">View User</a>
+                            </div>
+                            {{-- manage category end --}}
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             {{-- manage category start --}}
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts"

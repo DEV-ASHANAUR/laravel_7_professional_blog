@@ -80,7 +80,11 @@
               <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d Y') }}</span>
             </div>
             
-              <p>{!! Str::limit($post->description,200) !!}</p>
+              <p>@php
+                  $fresh = strip_tags($post->description);
+              @endphp
+              
+              {{ Str::limit($fresh, 100, '...') }}</p>
               <p><a href="{{ route('website.post',['slug'=>$post->slug]) }}">Read More</a></p>
             </div>
           </div>
