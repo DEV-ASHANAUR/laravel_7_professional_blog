@@ -8,6 +8,11 @@ use App\Category;
 use App\Tag;
 class FrontEndController extends Controller
 {
+    public function __construct()
+    {
+        $category = Category::take(5)->get();
+        view()->share('category', $category);
+    }
     public function home()
     {
         $posts = Post::with('category', 'user')->orderBy('created_at','DESC')->take(5)->get();
@@ -35,9 +40,13 @@ class FrontEndController extends Controller
         $tagdata = Tag::orderBy('created_at', 'DESC')->get();
         return view('website.post',compact(['post','popular','category','tagdata']));       
     }
-    public function category()
+    public function category($slug)
     {
-        return view('website.category');
+        //dd($slug);
+        $catdata = Category::where('slug', $slug)->first();
+        $posts = Post::with('category','user')->where('category_id',$catdata->id)->orderBy('created_at','DESC')->paginate(9);
+        //dd($category);
+        return view('website.category',compact(['catdata','posts']));
     }
     public function contact()
     {

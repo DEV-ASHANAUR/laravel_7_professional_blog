@@ -200,7 +200,7 @@
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
                         <div class="bio text-center">
-                            <img src="{{ url('upload/users_images/'.$post->user->image) }}" alt="Image Placeholder"
+                            <img src="{{ (!empty($post->user->image))?url('upload/users_images/'.$post->user->image):url('upload/default.jpg') }}" alt="Image Placeholder"
                                 class="img-fluid mb-5">
                             <div class="bio-body">
                                 <h2>{{ $post->user->name }}</h2>

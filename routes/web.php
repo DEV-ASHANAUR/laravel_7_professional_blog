@@ -69,5 +69,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/','FrontEndController@home')->name('website.home');
 Route::get('/about','FrontEndController@about')->name('website.about');
 Route::get('/post/{slug}','FrontEndController@singlepost')->name('website.post');
-Route::get('/category','FrontEndController@category')->name('website.category');
+Route::get('/category/{slug}','FrontEndController@category')->name('website.category');
 Route::get('/contact','FrontEndController@contact')->name('website.contact');
