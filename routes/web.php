@@ -64,6 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'PostController@update')->name('post.update');
         Route::get('/delete/{id}', 'PostController@destroy')->name('post.destroy');
     });
+    Route::group(['prefix' => 'setting'], function () {
+        Route::get('/edit', 'SettingController@Edit')->name('setting.edit');
+        Route::post('/update', 'SettingController@update')->name('setting.update');
+    });
 });
 
 Route::get('/','FrontEndController@home')->name('website.home');
