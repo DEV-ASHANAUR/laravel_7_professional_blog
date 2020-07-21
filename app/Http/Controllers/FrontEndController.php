@@ -15,7 +15,7 @@ class FrontEndController extends Controller
     }
     public function home()
     {
-        $posts = Post::with('category', 'user')->orderBy('created_at','DESC')->take(5)->get();
+        $posts = Post::with('category','user')->orderBy('created_at','DESC')->take(5)->get();
         $firstpost = $posts->splice(0,2);
         $middlepost = $posts->splice(0,1);
         $lastpost = $posts->splice(0);
@@ -32,9 +32,9 @@ class FrontEndController extends Controller
     {
         return view('website.about');
     }
-    public function singlepost($slug)
+    public function singlepost($slug,$id)
     {
-        $post = Post::with('category','user')->where('slug',$slug)->first();
+        $post = Post::with('category','user')->where('slug',$slug)->where('id',$id)->first();
         $popular = Post::with('category', 'user')->inRandomOrder()->limit(3)->get();
         $category = Category::all();
         $tagdata = Tag::orderBy('created_at', 'DESC')->get();

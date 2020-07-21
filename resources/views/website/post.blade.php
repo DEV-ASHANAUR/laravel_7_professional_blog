@@ -12,7 +12,7 @@
                         <h1 class="mb-4"><a href="javascript:void()">{{ $post->title }}</a></h1>
                         <div class="post-meta align-items-center text-center">
                             <figure class="author-figure mb-0 mr-3 d-inline-block"><img
-                                    src="{{ url('upload/users_images/'.$post->user->image) }}" alt="Image" class="img-fluid">
+                                    src="{{ (!empty($post->user->image))?url('upload/users_images/'.$post->user->image):url('upload/default.jpg') }}" alt="Image" class="img-fluid">
                             </figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d,Y') }}</span>
@@ -222,7 +222,7 @@
                             <ul>
                                 @foreach ($popular as $post)
                                 <li>
-                                    <a href="{{ route('website.post',['slug'=>$post->slug]) }}">
+                                    <a href="{{ route('website.post',['slug'=>$post->slug,'id'=>$post->id]) }}">
                                         <img src="{{ url('upload/posts_photo/'.$post->image) }}" alt="Image placeholder"
                                             class="mr-4">
                                         <div class="text">

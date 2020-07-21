@@ -22,17 +22,17 @@
             @foreach ($posts as $post)
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
-                    <a href="{{ route('website.post',['slug'=>$post->slug]) }}"><img src="{{ url('upload/posts_photo/'.$post->image) }}" alt="Image"
+                    <a href="{{ route('website.post',['slug'=>$post->slug,'id'=>$post->id]) }}"><img src="{{ url('upload/posts_photo/'.$post->image) }}" alt="Image"
                             class="img-fluid rounded"></a>
                     <div class="excerpt">
                         <span class="post-category text-white bg-secondary mb-3">{{ $post->category->name }}</span>
 
-                        <h2><a href="{{ route('website.post',['slug'=>$post->slug]) }}">{{ $post->title }}</a></h2>
+                        <h2><a href="{{ route('website.post',['slug'=>$post->slug,'id'=>$post->id]) }}">{{ $post->title }}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix">
                             <figure class="author-figure mb-0 mr-3 float-left"><img
-                                    src="{{ url('upload/users_images/'.$post->user->image) }}" alt="Image"
+                                    src="{{ (!empty($post->user->image))?url('upload/users_images/'.$post->user->image):url('upload/default.jpg') }}" alt="Image"
                                     class="img-fluid"></figure>
-                            <span class="d-inline-block mt-1">By <a href="{{ route('website.post',['slug'=>$post->slug]) }}">{{ $post->user->name }}</a></span>
+                            <span class="d-inline-block mt-1">By <a href="{{ route('website.post',['slug'=>$post->slug,'id'=>$post->id]) }}">{{ $post->user->name }}</a></span>
                             <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d Y') }}</span>
                         </div>
 
@@ -43,7 +43,7 @@
               
                             {{ Str::limit($fresh, 100, '...') }}
                         </p>
-                        <p><a href="{{ route('website.post',['slug'=>$post->slug]) }}">Read More</a></p>
+                        <p><a href="{{ route('website.post',['slug'=>$post->slug,'id'=>$post->id]) }}">Read More</a></p>
                     </div>
                 </div>
             </div>
