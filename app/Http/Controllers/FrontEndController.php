@@ -36,9 +36,15 @@ class FrontEndController extends Controller
     {
         $post = Post::with('category','user')->where('slug',$slug)->where('id',$id)->first();
         $popular = Post::with('category', 'user')->inRandomOrder()->limit(3)->get();
+        // More related posts
+        $relatedPosts = Post::orderBy('category_id', 'desc')->inRandomOrder()->take(4)->get();
+        $firstRelatedPost = $relatedPosts->splice(0, 1);
+        $firstRelatedPosts2 = $relatedPosts->splice(0, 2);
+        $lastRelatedPost = $relatedPosts->splice(0, 1);
+
         $category = Category::all();
         $tagdata = Tag::orderBy('created_at', 'DESC')->get();
-        return view('website.post',compact(['post','popular','category','tagdata']));       
+        return view('website.post',compact(['post','popular','category','tagdata','firstRelatedPost','firstRelatedPosts2','lastRelatedPost']));       
     }
     public function category($slug)
     {
