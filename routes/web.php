@@ -68,6 +68,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit', 'SettingController@Edit')->name('setting.edit');
         Route::post('/setting/update', 'SettingController@update_setting')->name('setting.update');
     });
+    Route::group(['prefix' => 'message'], function () {
+        Route::get('/message/view', 'ContactController@index')->name('message.view');
+        Route::get('/message/show/{id}', 'ContactController@show')->name('message.show');
+        Route::get('/message/delete/{id}', 'ContactController@destroy')->name('message.destroy');
+    });
 });
 
 Route::get('/','FrontEndController@home')->name('website.home');
@@ -75,3 +80,4 @@ Route::get('/about','FrontEndController@about')->name('website.about');
 Route::get('/post/{slug}/{id}','FrontEndController@singlepost')->name('website.post');
 Route::get('/category/{slug}','FrontEndController@category')->name('website.category');
 Route::get('/contact','FrontEndController@contact')->name('website.contact');
+Route::post('/contact/message','FrontEndController@Message_send')->name('website.message');

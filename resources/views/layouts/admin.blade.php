@@ -103,11 +103,21 @@
                             {{-- manage site setting --}}
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Manage Site Setting
+                                Manage Setting
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             <div class="collapse {{ ($prefix == '/setting')?'show':'' }}" id="collapseLayouts5" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'setting.edit')?'active':'' }}" href="{{ route('setting.edit') }}">Edit Setting</a>
+                            </div>
+                            {{-- manage site setting end --}}
+                            {{-- manage site setting --}}
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts6" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Message
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse {{ ($prefix == '/message')?'show':'' }}" id="collapseLayouts6" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'message.view')?'active':'' }}" href="{{ route('message.view') }}">View Message</a>
                             </div>
                             {{-- manage site setting end --}}
                             

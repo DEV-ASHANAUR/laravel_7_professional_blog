@@ -8,6 +8,7 @@ use App\Category;
 use App\Tag;
 use App\Setting;
 use App\User;
+use App\Contact;
 class FrontEndController extends Controller
 {
     public function __construct()
@@ -63,5 +64,25 @@ class FrontEndController extends Controller
     public function contact()
     {
         return view('website.contact');
+    }
+    public function Message_send(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:200',
+            'email' => 'required|email|max:200',
+            'subject' => 'required|max:255',
+            'message' => 'required|min:50',
+        ]);
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->message = $request->message;
+        $contact->save();
+        $notification=array(
+            'message'=>'Successfully Send Message!',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }
