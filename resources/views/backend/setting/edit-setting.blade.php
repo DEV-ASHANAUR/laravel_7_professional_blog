@@ -67,7 +67,7 @@
                             <div class="form-row"> 
                                 <div class="form-group col-md-12">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Enter Some Description" id="description">{{ $setting->about_site }}</textarea>
+                                    <textarea cols="30" rows="10" class="form-control" name="description" placeholder="Enter Some Description" id="description">{{ $setting->about_site }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use App\Tag;
+use App\Setting;
 class FrontEndController extends Controller
 {
     public function __construct()
     {
         $category = Category::take(5)->get();
         view()->share('category', $category);
+
+        $setting = Setting::first();
+        view()->share('setting', $setting);
     }
     public function home()
     {
