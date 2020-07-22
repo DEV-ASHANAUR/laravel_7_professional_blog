@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['prefix' => 'setting'], function () {
         Route::get('/edit', 'SettingController@Edit')->name('setting.edit');
-        Route::post('/update', 'SettingController@update')->name('setting.update');
+        Route::post('/setting/update', 'SettingController@update_setting')->name('setting.update');
     });
 });
 

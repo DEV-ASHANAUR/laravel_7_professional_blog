@@ -13,7 +13,9 @@
                 <small class="d-sm-block"><a href="{{ route('post.view') }}" class="btn btn-success btn-sm"><i class="fas fa-list mr-1"></i>Post List</a></small>
             </div>
             <div class="card-body">
-                @include('includes.error')
+              <div class="row">
+                <div class="col-md-8 m-auto">
+                  @include('includes.error')
                 <form action="{{ route('post.store') }}" method="post" id="Myform" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
@@ -29,13 +31,13 @@
                       </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                             <label for="title">Post Title</label>
                             <input type="text" class="form-control" name="title">
                         </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-md-8">
+                      <div class="form-group col-md-12">
                           <label>Post Category</label>
                           <select name="category" class="form-control" id="category">
                             <option value="">Select Category</option>
@@ -46,7 +48,7 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-md-8">
+                      <div class="form-group col-md-12">
                         <label>Post Tag</label><br>
                           @foreach ($tag as $tags)
                             <div class="form-check form-check-inline">
@@ -57,7 +59,7 @@
                       </div>
                     </div>       
                     <div class="form-row"> 
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                             <label for="description">Description</label>
                             <textarea class="form-control" name="description" placeholder="Enter Some Description" id="description"></textarea>
                         </div>
@@ -66,6 +68,8 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+                </div>
+              </div>
             </div>
         </div>
         

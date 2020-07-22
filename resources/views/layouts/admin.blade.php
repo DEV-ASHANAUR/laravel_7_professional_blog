@@ -90,7 +90,7 @@
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'tag.view')?'active':'' }}" href="{{ route('tag.view') }}">View Tag</a>
                             </div>
                             {{-- manage tag end --}}
-                            {{-- manage tag start --}}
+                            {{-- manage post start --}}
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Manage Post
@@ -99,7 +99,17 @@
                             <div class="collapse {{ ($prefix == '/post')?'show':'' }}" id="collapseLayouts3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'post.view')?'active':'' }}" href="{{ route('post.view') }}">View Post</a>
                             </div>
-                            {{-- manage tag end --}}
+                            {{-- manage post end --}}
+                            {{-- manage site setting --}}
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Manage Site Setting
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                            ></a>
+                            <div class="collapse {{ ($prefix == '/setting')?'show':'' }}" id="collapseLayouts5" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link {{ ($route == 'setting.edit')?'active':'' }}" href="{{ route('setting.edit') }}">Edit Setting</a>
+                            </div>
+                            {{-- manage site setting end --}}
                             
                         </div>
                     </div>

@@ -13,7 +13,9 @@
                 <small class="d-sm-block"><a href="{{ route('post.view') }}" class="btn btn-success btn-sm"><i class="fas fa-list mr-1"></i>Post List</a></small>
             </div>
             <div class="card-body">
-                @include('includes.error')
+              <div class="row">
+                <div class="col-md-8 m-auto">
+                  @include('includes.error')
                 <form action="{{ route('post.update',$edit_data->id) }}" method="post" id="Myform" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
@@ -29,13 +31,13 @@
                       </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                             <label for="title">Post Title</label>
                             <input type="text" value="{{ $edit_data->title }}" class="form-control" name="title">
                         </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-md-8">
+                      <div class="form-group col-md-12">
                           <label>Post Category</label>
                           <select name="category" class="form-control" id="category">
                             <option value="">Select Category</option>
@@ -46,7 +48,7 @@
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-md-8">
+                      <div class="form-group col-md-12">
                           <label>Post Tags</label><br>
                           @foreach ($tag as $tags)
                           <div class="form-check form-check-inline">
@@ -61,7 +63,7 @@
                       </div>
                     </div>       
                     <div class="form-row"> 
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                             <label for="description">Description</label>
                             <textarea class="form-control" id="description" name="description" placeholder="Enter Some Description">{{ $edit_data->description }}</textarea>
                         </div>
@@ -70,6 +72,8 @@
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
+                </div>
+              </div>
             </div>
         </div>
         
