@@ -79,5 +79,6 @@ Route::get('/','FrontEndController@home')->name('website.home');
 Route::get('/about','FrontEndController@about')->name('website.about');
 Route::get('/post/{slug}/{id}','FrontEndController@singlepost')->name('website.post');
 Route::get('/category/{slug}','FrontEndController@category')->name('website.category');
+Route::get('/tag/{slug}','FrontEndController@tag')->name('website.tag');
 Route::get('/contact','FrontEndController@contact')->name('website.contact');
 Route::post('/contact/message','FrontEndController@Message_send')->name('website.message');

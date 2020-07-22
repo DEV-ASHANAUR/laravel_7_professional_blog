@@ -61,6 +61,15 @@ class FrontEndController extends Controller
         //dd($category);
         return view('website.category',compact(['catdata','posts']));
     }
+    public function tag($slug)
+    {
+        //dd($slug);
+        $tag = Tag::where('slug', $slug)->first();
+        $posts = $tag->posts()->orderBy('created_at', 'desc')->paginate(9);
+        //dd($posts);
+        //return $posts;
+        return view('website.tag',compact(['tag','posts']));
+    }
     public function contact()
     {
         return view('website.contact');
