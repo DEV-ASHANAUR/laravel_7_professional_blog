@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 order-md-2">
-                    <img src="{{ (!empty($User->image))?url('upload/users_images/'.$User->image):url('upload/default.jpg') }}" width="400px" height="400px" class="img-fluid">
+                    <img src="{{ (!empty($User->image))?url('upload/users_images/'.$User->image):url('upload/default.jpg') }}" width="400px" height="400px" class="img-fluid img-thumbnail">
                 </div>
                 <div class="col-md-5 mr-auto order-md-1">
                     <h2>{{ $User->name }}</h2>
