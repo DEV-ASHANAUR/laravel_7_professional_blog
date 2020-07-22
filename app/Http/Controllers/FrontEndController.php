@@ -7,6 +7,7 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use App\Setting;
+use App\User;
 class FrontEndController extends Controller
 {
     public function __construct()
@@ -34,7 +35,8 @@ class FrontEndController extends Controller
     }
     public function about()
     {
-        return view('website.about');
+        $User = User::first();
+        return view('website.about',compact('User'));
     }
     public function singlepost($slug,$id)
     {

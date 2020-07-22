@@ -35,8 +35,8 @@
                               <div class="text-center">
                                 <div class="author-box-description">
                                   <p>
-                                    {{ (!empty($user->description))?$user->description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur voluptatum alias molestias
-                                    minus quod dignissimos.' }}
+                                    {!! (!empty($user->description))?$user->description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur voluptatum alias molestias
+                                    minus quod dignissimos.' !!}
                                   </p>
                                 </div>
                                 <div class="mb-2 mt-3">

@@ -204,7 +204,7 @@
                                 class="img-fluid mb-5">
                             <div class="bio-body">
                                 <h2>{{ $post->user->name }}</h2>
-                                <p class="mb-4">{{ $post->user->description }}</p>
+                                <p class="mb-4">{!! $post->user->description !!}</p>
                                 <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a></p>
                                 <p class="social">
                                     <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
