@@ -35,39 +35,65 @@
                                     <label for="name">Setting Name</label>
                                     <input type="text" class="form-control" @if (!empty($setting->name))
                                       value="{{ $setting->name }}"
-                                    @endif name="name">
+                                    @endif name="name" placeholder="Enter Setting Name">
                                 </div>
                             </div>  
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="facebook">Facebook</label>
-                                    <input type="text" value="{{ $setting->facebook }}" class="form-control" name="facebook" placeholder="Enter facebook Url">
+                                    <input type="text" @if (!empty($setting->facebook))
+                                    value="{{ $setting->facebook }}"
+                                  @endif class="form-control" name="facebook" placeholder="Enter facebook Url">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="twitter">Twitter</label>
-                                    <input type="text" value="{{ $setting->twitter }}" class="form-control" name="twitter" placeholder="Enter Twitter Url">
+                                    <input type="text" @if (!empty($setting->twitter))
+                                    value="{{ $setting->twitter }}"
+                                  @endif class="form-control" name="twitter" placeholder="Enter Twitter Url">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="instragram">Instragram</label>
-                                    <input type="text" class="form-control" name="instragram" value="{{ $setting->instagram }}" placeholder="Enter Instragram Url">
+                                    <input type="text" class="form-control" name="instragram" @if (!empty($setting->instagram))
+                                    value="{{ $setting->instagram }}"
+                                  @endif placeholder="Enter Instragram Url">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="reddit">Reddit</label>
-                                    <input type="text" value="{{ $setting->reedit }}" class="form-control" name="reddit" placeholder="Enter Reddit Url">
+                                    <input type="text" @if (!empty($setting->reedit))
+                                    value="{{ $setting->reedit }}"
+                                  @endif class="form-control" name="reddit" placeholder="Enter Reddit Url">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="email">Email</label>
-                                    <input type="text" value="{{ $setting->email }}" class="form-control" name="email" placeholder="Enter Email">
+                                    <input type="email" @if (!empty($setting->email))
+                                    value="{{ $setting->email }}"
+                                  @endif class="form-control" name="email" placeholder="Enter Email">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="copy">Copyright</label>
-                                    <input type="text" value="{{ $setting->copyright }}" class="form-control" name="copy" placeholder="copyright &copy; all right reserve">
+                                    <input type="text" @if (!empty($setting->copyright))
+                                    value="{{ $setting->copyright }}"
+                                  @endif class="form-control" name="copy" placeholder="copyright &copy; all right reserve">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" @if (!empty($setting->phone))
+                                    value="{{ $setting->phone }}"
+                                  @endif class="form-control" name="phone" placeholder="Enter Phone Number">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="address">Location</label>
+                                    <input type="text" @if (!empty($setting->address))
+                                    value="{{ $setting->address }}"
+                                  @endif class="form-control" name="address" placeholder="Enter Location">
                                 </div>
                             </div>     
                             <div class="form-row"> 
                                 <div class="form-group col-md-12">
                                     <label for="description">Description</label>
-                                    <textarea cols="30" rows="10" class="form-control" name="description" placeholder="Enter Some Description" id="description">{{ $setting->about_site }}</textarea>
+                                    <textarea cols="30" rows="10" class="form-control" name="description" placeholder="Enter Some Description" id="description">@if (!empty($setting->about_site))
+                                        {{ $setting->about_site }}
+                                      @endif</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -127,3 +153,16 @@
     </script>
 
 @endsection 
+@section('style')
+  <link href="{{ asset('admin') }}/summernote-bs4.css" rel="stylesheet"/>
+@endsection
+@section('script')
+  <script src="{{ asset('admin') }}/summernote-bs4.js"></script>
+  <script>
+    $('#description').summernote({
+        placeholder: 'Write Post Description Here..',
+        tabsize: 2,
+        height: 300
+      });
+  </script>
+@endsection

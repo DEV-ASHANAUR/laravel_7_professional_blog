@@ -22,8 +22,11 @@ class SettingController extends Controller
        $data->instagram = $request->instragram;
        $data->reedit = $request->reddit;
        $data->email = $request->email;
+       $data->phone = $request->phone;
+       $data->address = $request->address;
        $data->copyright = $request->copy;
        $data->about_site = $request->description;
+       $data->update();
        if($request->file('file')){
            $file = $request->file('file');
            @unlink(public_path('upload/logo/'.$data->site_logo));
