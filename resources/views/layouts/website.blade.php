@@ -168,7 +168,8 @@
               break;
       }
     @endif  
-</script>
+  </script>
+  @yield('comment')
 
   </body>
 </html>
