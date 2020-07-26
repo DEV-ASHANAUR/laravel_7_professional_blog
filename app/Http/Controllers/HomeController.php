@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Tag;
+use App\Category;
+use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         // return view('home');
-        return view('backend.dashboard.index');
+        $data['post'] = Post::all()->count();
+        $data['cat'] = Category::all()->count();
+        $data['tag'] = Tag::all()->count();
+        $data['user'] = User::all()->count();
+
+        return view('backend.dashboard.index',$data);
     }
 }
