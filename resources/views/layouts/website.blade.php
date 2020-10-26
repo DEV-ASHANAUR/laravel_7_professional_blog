@@ -77,7 +77,13 @@
         <div class="row mb-5">
           <div class="col-md-4">
             <h3 class="footer-heading mb-4">About Us</h3>
-            <p>{!! $setting->about_site !!}</p>
+            <p>
+              @if (!empty($setting->about_site))
+                  {!! $setting->about_site !!}
+              @else
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae veritatis repellat assumenda natus impedit quas ipsam harum perspiciatis sequi corrupti delectus id fugit optio, at consectetur minima blanditiis possimus recusandae.</p>
+              @endif
+            </p>
           </div>
           <div class="col-md-3 ml-auto">
             <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
@@ -103,19 +109,19 @@
             <div>
               <h3 class="footer-heading mb-4">Connect With Us</h3>
               <p>
-                @if ($setting->facebook)
+                @if (!empty($setting->facebook))
                 <a target="_blank" href="{{ $setting->facebook }}"><span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span></a>
                 @endif
-                @if ($setting->twitter)
+                @if (!empty($setting->twitter))
                    <a target="_blank" href="{{ $setting->twitter }}"><span class="icon-twitter p-2"></span></a> 
                 @endif
-                @if ($setting->instagram)
+                @if (!empty($setting->instagram))
                     <a target="_blank" href="{{ $setting->instagram }}"><span class="icon-instagram p-2"></span></a>
                 @endif
-                @if ($setting->reedit)
+                @if (!empty($setting->reedit))
                     <a target="_blank" href="{{ $setting->reedit }}"><span class="icon-rss p-2"></span></a>
                 @endif
-                @if ($setting->email)
+                @if (!empty($setting->email))
                     <a target="_blank" href="{{ $setting->email }}"><span class="icon-envelope p-2"></span></a>
                 @endif
               </p>
@@ -126,7 +132,11 @@
           <div class="col-12 text-center">
             <p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              {!! $setting->copyright !!} | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a><br>
+              @if (!empty($setting->copyright))
+              {!! $setting->copyright !!}
+              @else
+              &copy; 2020
+              @endif | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a><br>
               <p class="m-0">This template Development with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="www.facebook.com/ashanaur.rahman.16" target="_blank" >Ashanur</a></p>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               </p>

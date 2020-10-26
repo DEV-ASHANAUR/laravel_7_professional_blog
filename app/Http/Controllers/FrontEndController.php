@@ -17,6 +17,7 @@ class FrontEndController extends Controller
         view()->share('category', $category);
 
         $setting = Setting::first();
+        //dd($setting);
         view()->share('setting', $setting);
     }
     public function home()
